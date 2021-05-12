@@ -13,11 +13,6 @@
 # limitations under the License.
 
 load(
-    "//mediapipe/framework/tool:mediapipe_graph.bzl",
-    "mediapipe_binary_graph",
-)
-
-load(
     "//mediapipe/java/com/google/mediapipe:mediapipe_aar.bzl",
     "mediapipe_aar",
 )
@@ -41,28 +36,6 @@ cc_library(
         "//mediapipe/gpu:gpu_buffer_to_image_frame_calculator",
         "//mediapipe/gpu:image_frame_to_gpu_buffer_calculator",
     ],
-)
-
-cc_library(
-    name = "desktop_calculators",
-    deps = [
-        "//mediapipe/calculators/core:flow_limiter_calculator",
-        "//mediapipe/calculators/core:previous_loopback_calculator",
-        "//mediapipe/calculators/image:image_transformation_calculator",
-        "//mediapipe/calculators/image:recolor_calculator",
-        "//mediapipe/calculators/image:set_alpha_calculator",
-        "//mediapipe/calculators/tflite:tflite_converter_calculator",
-        "//mediapipe/calculators/tflite:tflite_custom_op_resolver_calculator",
-        "//mediapipe/calculators/tflite:tflite_inference_calculator",
-        "//mediapipe/calculators/tflite:tflite_tensors_to_segmentation_calculator",
-    ],
-)
-
-mediapipe_binary_graph(
-    name = "mobile_gpu_binary_graph",
-    graph = "hair_segmentation_mobile_gpu.pbtxt",
-    output_name = "hair_segmentation_mobile_gpu.binarypb",
-    deps = [":mobile_calculators"],
 )
 
 mediapipe_aar(
